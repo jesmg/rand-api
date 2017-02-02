@@ -1,0 +1,29 @@
+{
+ "name": "rand-api",
+ "version": "0.0.1",
+ "description": "Random numbers and entropy RESTful API provider",
+ "author": {
+  "name": "Jesus Marin",
+  "email": "contacto@jesusmg.org",
+  "url": "http://jesusmg.org"
+ },
+ "main": "app.js",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/jesmg/rand-api"
+ },
+ "bugs": {
+  "url": "https://github.com/jesmg/rand-api/issues"
+ },
+ "keywords": [
+  "random number",
+  "random",
+  "entropy",
+  "generator"
+ ],
+ "dependencies": {
+  "express": "^4.7.1"
+ },
+ "private": true,
+ "license": "MIT"
+}
