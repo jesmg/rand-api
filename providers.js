@@ -1,6 +1,8 @@
-module.exports = function () {
+module.exports = function() {
+    
+    var providers = {};
 
-    get: function(provider, format, size, hash) {
+    providers.get = function(provider, format, size, hash) {
         
        switch(provider) {
           case 'xkcd': return xkcdProvider(format, size, hash); break;
@@ -9,12 +11,20 @@ module.exports = function () {
       
     };
 
-    xkcdProvider(format, size, hash) {
+    var xkcdProvider = function(format, size, hash) {
+
+        return {error: '', data: xkcdSource()}
+
+    };     
+
+    var xkcdSource = function () {
 
         return 4; // chosen by fair dice roll
                   // guaranteed to be random
                   // https://xkcd.com/221/
 
-    };     
+    };
+
+    return providers;
    
 }

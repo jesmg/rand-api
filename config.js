@@ -1,10 +1,10 @@
 var config = {};
 
 //Port to listen
-config.port = '3770';
+config.port = 80;
 
 //Available providers
-config.providers = ['xkcd'];
+config.allowedProviders = ['xkcd'];
 
 //Default provider
 config.defaultProvider = 'xkcd';

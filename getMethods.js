@@ -1,19 +1,13 @@
 module.exports = function(router, config, providers) {
-   
-   
-   // Routes
-   router.get('/newRand', newRandom(req, res));
-   
-
 
    //Methods
-   newRandom: function(req, res) {
+   var newRandom = function(req, res) {
     var provider = req.params.provider;
     var format = req.params.format;
     var size = req.params.size;
     var hash = req.params.hash;
 
-    if (!config.providers.find(provider)) {
+    if (config.allowedProviders.indexOf(provider) > -1) {
         res.status('400').jsonp({ status: '-1', error: 'invalid provider', data: ''});
     }
 
@@ -21,7 +15,7 @@ module.exports = function(router, config, providers) {
         provider = config.defaultProvider;
     }
 
-    if (format != 'raw' && format != 'hex' && format != 'number' ) {
+    if (format && format != 'raw' && format != 'hex' && format != 'number' ) {
         res.status('400').jsonp({ status: '-2', error: 'invalid format', data: ''});
     }
 
@@ -54,5 +48,8 @@ module.exports = function(router, config, providers) {
     }
 
    };
+
+   // Routes
+   router.get('/newRand', newRandom);
 
 }
