@@ -1,15 +1,11 @@
-module.exports = function () {
+module.exports = {
 
-    var provider = {};
-
-    provider.getArray = function (formatCallback, size, hmac) {
+    getArray: function (formatCallback, size, hmac) {
 
         var data = [];
         data.fill('1', size);   // chosen by fair dice roll.
         return formatCallback(data, hmac);  // guaranteed to be random.
 
-    };
-
-    return provider;
+    }
 
 }

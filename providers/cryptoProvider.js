@@ -1,15 +1,11 @@
-module.exports = function() {
-    
-    var provider = {};
+module.exports = {
 
-    provider.getArray = function(formatCallback, size, hmac) {
+    getArray: function(formatCallback, size, hmac) {
         
         const crypto = require('crypto');
         var data = crypto.randomBytes(size);
         return formatCallback(data, hmac);
 
-    };
-
-    return provider;
+    }
 
 }
