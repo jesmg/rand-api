@@ -24,21 +24,17 @@ module.exports = function (config) {
 
     };
 
-    //Formatters. Data is a byte array.
+    //Formatters. Data is a buffer.
     var rawFormat = function (data, hmac) {
-        return { error: '', data: hmac ? hmacFormat(data) : data };
+        return { error: '', data: (hmac ? hmacFormat(data) : data.toJSON().data) };
     };
 
     var base64Format = function (data, hmac) {
-        return { error: '', data: hmac ? hmacFormat(data.toString('base64')) : data.toString('base64') };
+        return { error: '', data: (hmac ? hmacFormat(data.toString('base64')) : data.toString('base64')) };
     };
 
     var numberFormat = function (data, hmac) {
-        var number = 0;
-        for (var i = 0; i < len(data); i++) {
-            (data[i] == 1) ? number += 2 ^ i : number;
-        }
-        return { error: '', data: hmac ? hmacFormat(number) : number };
+        return { error: '', data: (hmac ? hmacFormat(data.readUInt32BE().toString()) : data.readUInt32BE()) };
     };
 
     //Always returns base64
@@ -46,7 +42,7 @@ module.exports = function (config) {
         const crypto = require('crypto');
         const hmac = crypto.createHmac('sha256', config.hmacSecret);
         hmac.update(data);
-        hmac.digest('base64');
+        return hmac.digest('base64');
     };
 
     return providers;

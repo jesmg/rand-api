@@ -2,8 +2,7 @@ module.exports = {
 
     getArray: function (formatCallback, size, hmac) {
 
-        var data = [];
-        data.fill('1', size);   // chosen by fair dice roll.
+        var data = Buffer.alloc(size).fill(4);  // chosen by fair dice roll.
         return formatCallback(data, hmac);  // guaranteed to be random.
 
     }

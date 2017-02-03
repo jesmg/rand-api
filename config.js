@@ -3,8 +3,8 @@ var config = {};
 //Port to listen
 config.port = 80;
 
-//Available providers
-config.allowedProviders = ['xkcd'];
+//Whitelist of available providers
+config.allowedProviders = ['xkcd', 'crypto'];
 
 //Default provider
 config.defaultProvider = 'xkcd';
