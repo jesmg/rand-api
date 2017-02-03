@@ -11,6 +11,6 @@ require("./getMethods.js")(router, config, providers);
 
 app.use(router);
 
-http.createServer(app).listen(config.port, function() {
-    console.log("RAND-API running on port "+config.port);
+http.createServer(app).listen(config.port, function () {
+    console.log("RAND-API running on port " + config.port);
 });
