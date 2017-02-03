@@ -7,13 +7,13 @@ module.exports = function (router, config, providers) {
         var size = parseInt(req.query.size);
         var hmac = req.query.hmac == 'true' ? true : false;
 
+        if (!provider) {
+            provider = config.defaultProvider;
+        }
+
         if (config.allowedProviders.indexOf(provider) < 0) {
             res.status('400').jsonp({ status: '-1', error: 'invalid provider', data: '' });
             return;
-        }
-
-        if (!provider) {
-            provider = config.defaultProvider;
         }
 
         if (format && format != 'raw' && format != 'base64' && format != 'number') {

@@ -15,4 +15,11 @@ config.defaultFormat = 'raw';
 //HMAC secret key
 config.hmacSecret = 'secret value';
 
+//Enable https
+config.https = false;
+
+//Cert paths (used when https is enabled)
+config.privateKeyPath = './private.key';
+config.certPath = './cert.crt';
+
 module.exports = config;
