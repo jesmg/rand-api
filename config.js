@@ -12,4 +12,7 @@ config.defaultProvider = 'xkcd';
 //Default format
 config.defaultFormat = 'raw';
 
+//HMAC secret key
+config.hmacSecret = 'secret value';
+
 module.exports = config;

@@ -1,5 +1,5 @@
 var config = require("./config.js");
-var providers = require("./providers.js")();
+var providers = require("./providers.js")(config);
 
 var express = require("express");
 var http = require('http');

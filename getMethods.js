@@ -5,7 +5,7 @@ module.exports = function (router, config, providers) {
         var provider = req.params.provider;
         var format = req.params.format;
         var size = req.params.size;
-        var hash = req.params.hash;
+        var hmac = req.params.hmac;
 
         if (config.allowedProviders.indexOf(provider) > -1) {
             res.status('400').jsonp({ status: '-1', error: 'invalid provider', data: '' });
@@ -15,7 +15,7 @@ module.exports = function (router, config, providers) {
             provider = config.defaultProvider;
         }
 
-        if (format && format != 'raw' && format != 'hex' && format != 'number') {
+        if (format && format != 'raw' && format != 'base64' && format != 'number') {
             res.status('400').jsonp({ status: '-2', error: 'invalid format', data: '' });
         }
 
@@ -31,15 +31,15 @@ module.exports = function (router, config, providers) {
             res.status('400').jsonp({ status: '-4', error: 'size must be a number', data: '' });
         }
 
-        if (!hash) {
-            hash = true;
+        if (!hmac) {
+            hmac = true;
         }
 
-        if (hash !== true && hash !== false) {
-            res.status('400').jsonp({ status: '-5', error: 'hash must be boolean', data: '' });
+        if (hmac !== true && hmac !== false) {
+            res.status('400').jsonp({ status: '-5', error: 'hmac must be a boolean', data: '' });
         }
 
-        result = providers.get(provider, format, size, hash);
+        result = providers.get(provider, format, size, hmac);
 
         if (result.error) {
             res.status('500').jsonp({ status: -6, error: result.error, data: '' });
